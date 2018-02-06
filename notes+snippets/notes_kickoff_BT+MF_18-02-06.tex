@@ -1,0 +1,135 @@
+\documentclass[fleqn,reqno,10pt]{article}
+
+\usepackage{amsmath}
+\usepackage[margin = 2.5cm]{geometry}
+\usepackage[natbib=true,style=authoryear-comp,backend=bibtex,doi=false,url=false]{biblatex}
+\bibliography{bibliography}
+
+\usepackage{txfonts} % times font
+\usepackage{relsize} % provides command \relsize{+/-x} for relative font size changes
+
+% abbreviations in small-caps
+\usepackage{xspace}
+\newcommand{\acro}[1]{{\relsize{+1}\textsc{#1}}\xspace}
+\newcommand{\acros}[1]{{\relsize{+1}\textsc{#1}}{\relsize{-1}s}\xspace}
+\newcommand{\ga}{\acro{ga}}    % gradable adjective
+\newcommand{\gas}{\acros{gas}} % gradable adjectives
+
+\newcommand{\den}[1]{\left [\! \left [ #1 \right ]\! \right]}
+
+% colors
+\usepackage{xcolor}
+\definecolor{Red}{RGB}{178,34,34}
+\definecolor{Green}{RGB}{34,178,34}
+\newcommand{\mf}[1]{\textcolor{Red}{[mf: #1]}}
+\newcommand{\bt}[1]{\textcolor{Green}{[lb: #1]}}
+\newcommand{\red}[1]{{\color{Red}{#1}}}
+
+% some commands
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\tuple}[1]{\left \langle #1\right\rangle}
+\DeclareMathOperator{\expo}{exp}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+\title{Notes from 1\textsuperscript{st} brainstorming}
+\author{Barbara and Michael}
+\date{February 8 2018}
+
+\begin{document}
+\maketitle
+
+\section{Background: theories and experimental data}
+\label{sec:backgr-theor-exper}
+
+\section{Models}
+
+Rather than redo, outwit or refute previous experimental contributions, \textbf{our goal is to
+  chart new territory}. The starting point should be new predictions made by conceptually
+interesting probabilistic models, ideally extensions of the optimal-$\theta$ model or the RSA
+model for \gas
+\citep{QingFranke2014:Meaning-and-Use,QingFranke2014:Gradable-Adject,LassiterGoodman2015:Adjectival-vagu}. Two
+ideas came to mind.
+
+\subsection{Lexical uncertainty about absolute \gas}
+
+Lexical uncertainty models
+\citep{BergenLevy2012:Thats-what-she-,PottsLassiter2016:Embedded-implic,BergenLevy2014:Pragmatic-Reaso}
+assume that the listener is uncertain about the lexical meaning that a speaker might bring to
+the conversation. We consider uncertainty about the lexical meaning of absolute \gas: do they
+receive a relative (prior dependent) or absolute (pure standard) interpretation. We combine
+lexical uncertainty with the \ga-model of \citet{LassiterGoodman2015:Adjectival-vagu}
+\citep[exactly what][did too]{TesslerFranke2018:Not-unreasonabl}:
+\begin{align}
+L_{1}(x, \theta, \mathcal{L} \mid u) &\propto S_{1}(u \mid x, \theta, \mathcal{L}) \cdot P(x) \cdot  P(\theta) \cdot P(\mathcal{L}) \label{eq:L1} \\
+S_{1}(u \mid x, \theta, \mathcal{L}) &\propto \exp{(\alpha \cdot \ln {L_{0}(x \mid u, \theta, \mathcal{L})} - \text{cost}(u))} \label{eq:S1}\\
+L_{0}(x \mid u, \theta, \mathcal{L}) &\propto \mathcal{L}(u, x, \theta) \cdot P(x) \label{eq:L0}
+\end{align}
+A lexicon is a map $\mathfrak{L} \colon u,x,\theta \mapsto \set{0;1}$ which gives a (Boolean)
+truth-value for any utterance $u$ of some \ga, degree $x$ and threshold $\theta$. Only absolute
+gradable adjectives are lexically uncertain in the way described above. Model variants could
+distinguish cases where speakers maintain a single rule (all absolute \gas are
+prior-dependent/pure-standard) or between-item flexibility (e.g., \emph{full} is prior
+dependent; \emph{bent} is not).
+
+This model is likely to make interesting \textbf{novel predictions about task effects} that
+other stories are unlikely to offer anything beyond hand-wavy explanations. Generally speaking,
+observations from previous trials/encounters could shift beliefs about the speaker's likely
+lexicon. If speaker's have been observed to use an absolute \ga to refer to non-absolute degree
+$x$, listeners should update their lexical beliefs accordingly and be more likely to interpret
+a future use of this \ga (or others, depending on the model variant) as relative-standard
+(prior-dependent). Also, interpretation tasks which display multiple utterances at the same
+time ((implicitly:) by the same speaker) could show interesting effects of jointly conditioning
+the model with all observed utterances \citep[as observed
+by][]{TesslerFranke2018:Not-unreasonabl}.
+
+\mf{models need to be formulated precisely, implemented and predictions checked; this is all
+  just intuitive guesses about potential model predictions}
+
+\subsection{Uncertainty about the prior (or the comparison class)}
+
+If speakers and listeners are uncertain about the prior over degrees $P(x)$, we are also bound
+to see potentially interesting \textbf{predictions about response dynamics as a function of
+  prior exposure}. Suppose that items to be judged or chosen for interpretation are presented
+individually in each trial, or at the same time (like in stuff from the Chicago group
+\mf{insert ref}), this task manipulation will likely have effects on participants' construction
+of the comparison class / the relevant prior distribution. For example, for absolute \gas it
+might matter whether the end-point degrees have already been observed or not: as long as there
+is uncertainty about how likely these belong to the comparison class, priors with little
+density on these degrees are reasonably likely, thus shifting predictions about $\theta$
+``further away from the end-points''. In general, the more extreme instances are observed, the
+more median instances should count as ``neither this nor that''. 
+
+\section{Materials and envisaged pilot}
+
+\section{Future music}
+
+Two \textbf{big issues} to ponder:
+
+\begin{itemize}
+\item how to derive predictions about response reaction times from prob-models?
+\item how to link model predictions to data from some suitable EEG study?
+\end{itemize}
+
+
+
+
+
+% \begin{alignat*}{6}
+%   & P_{LL}(t \mid m, \red{l}) && = P(t \mid \den{m}^{\red{l}}) \ \ \propto \ \ P(t) \ \delta_{t
+%     \in \den{m}^{\red{l}}}  \\
+%   & P_{S_1}(m \mid t \, , \red{l} \, ; \, \lambda_1) && \propto \expo(\lambda_1 \cdot \log
+%   P_{LL}(t \mid m , \red{l})  \\
+%   & P_{L_1}(t, \red{l} \mid m \, ; \, \lambda_1) && \propto P(t) \cdot P(\red{l}) \cdot P_{S_1}(m
+%   \mid t \, , \red{l} \, ; \, \lambda_1) \\
+%   & P_{L_1}(t  \mid m \, ; \, \lambda_1)  &&  = \sum_{l} P_{L_1}(t, \red{l} \mid m \, ; \, \lambda_1) \\
+%   & P_{S_2}(m \mid t \, ; \, \lambda_1 \, , \lambda_2) && \propto \expo(\lambda_2 \cdot \log P_{L_1}(t
+%   \mid m \, ; \, \lambda_1)) \\
+%   & P_{L_2}(t  \mid m \, ; \, \lambda_1 \, , \lambda_2) && \propto P(t) \cdot P_{S_2}(m
+%   \mid t \, ; \, \lambda_1 \, , \lambda_2)
+% \end{alignat*}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
